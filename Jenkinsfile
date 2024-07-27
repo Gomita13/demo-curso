@@ -24,6 +24,7 @@ pipeline {
         stage('build'){
             steps {
                 echo 'Compilando el codigo..'
+                sh "docker build -t demo-curso:100"
             }
         }
 
