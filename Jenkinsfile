@@ -27,6 +27,17 @@ pipeline {
             }
         }
 
+        stage('SonarQube'){
+            environment {
+                scannerHome = tool 'SonarScanner'
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: 'TokenSonarQube	', installationName: 'sonarqube'){
+                    sh "${scannerHome}/bin/SonarScanner"
+                }
+            }
+        }
+
         stage('Pruebas'){
             steps{
                 echo 'Ejecutando pruebas '
